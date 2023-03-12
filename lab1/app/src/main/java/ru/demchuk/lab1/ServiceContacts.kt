@@ -1,14 +1,17 @@
 package ru.demchuk.lab1
 
+import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
+import android.database.Cursor
 import android.os.IBinder
+import android.provider.ContactsContract
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 
 class ServiceContacts : Service() {
 
-    private var listContacts: Int = 0
+    private val listContacts = ArrayList<String>()
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -23,13 +26,25 @@ class ServiceContacts : Service() {
         TODO("Not yet implemented")
     }
 
+    @SuppressLint("Range")
     private fun getContacts() {
-        listContacts = 5
+        val contentResolver = contentResolver
+        val cursor: Cursor? =
+            contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null)
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+
+                val contact: String =
+                    cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY))
+                listContacts.add(contact)
+            }
+            cursor.close()
+        }
     }
 
     private fun sendMessage() {
         val intent = Intent("get-contacts")
-        intent.putExtra("message", "This is my message!")
+        intent.putStringArrayListExtra("message", listContacts)
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
     }
 

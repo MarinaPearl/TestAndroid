@@ -5,14 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class WorkerWithServer : AppCompatActivity() {
 
-    private var message : String? = null
+    private var message: ArrayList<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +26,9 @@ class WorkerWithServer : AppCompatActivity() {
 
     private val messageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
-            message = intent.getStringExtra("message")
+            message = intent.getStringArrayListExtra("message")
             stopService()
             sendMessageInFirstActivity()
-            Log.d("receiver", "Got message: $message")
         }
     }
 
@@ -44,9 +42,8 @@ class WorkerWithServer : AppCompatActivity() {
     }
 
     private fun sendMessageInFirstActivity() {
-        println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("message", message)
+        intent.putStringArrayListExtra("message", message)
         startActivity(intent)
     }
 }
