@@ -6,7 +6,9 @@ plugins {
 android {
     namespace 'ru.demchuk.customview'
     compileSdk 33
-
+    buildFeatures {
+        viewBinding = true
+    }
     defaultConfig {
         applicationId "ru.demchuk.customview"
         minSdk 24

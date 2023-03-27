@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ru.demchuk.customview.ReactionView
+        android:id="@+id/reactionView"
+        android:background="@drawable/bg_reactiom_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:reaction="🤡"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"
         app:count="6"
-        tools:ignore="MissingConstraints" />
+        app:react="🤡" />
+    <ru.demchuk.customview.HorizontalViewGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

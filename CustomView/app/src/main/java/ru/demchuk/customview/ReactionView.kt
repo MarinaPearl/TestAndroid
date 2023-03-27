@@ -27,7 +27,7 @@ class ReactionView @JvmOverloads constructor(
 
     init {
         context.withStyledAttributes(attrs, R.styleable.ReactionView) {
-            val reaction = this.getString(R.styleable.ReactionView_reaction)
+            val reaction = this.getString(R.styleable.ReactionView_react)
             val count = this.getInt(R.styleable.ReactionView_count, 0)
             textToDraw = "$reaction $count"
         }
@@ -37,9 +37,9 @@ class ReactionView @JvmOverloads constructor(
             textPaint.getTextBounds(textToDraw, 0, textToDraw.length, textBounds)
             val textWidth = textBounds.width()
             val textHeight = textBounds.height()
-            val measureWidth = resolveSize(textWidth, widthMeasureSpec)
-            val measureHeight = resolveSize(textHeight, heightMeasureSpec)
-            setMeasuredDimension(measuredWidth, measuredHeight)
+            val measureWidth = resolveSize(textWidth + paddingLeft + paddingRight, widthMeasureSpec)
+            val measureHeight = resolveSize(textHeight + paddingTop + paddingBottom, heightMeasureSpec)
+            setMeasuredDimension(measureWidth, measureHeight)
 
     }
 
@@ -49,7 +49,8 @@ class ReactionView @JvmOverloads constructor(
         context.resources.displayMetrics
     )
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
+    override fun onDraw(canvas: Canvas) {
+        val centreY = height / 2 - textBounds.exactCenterY()
+       canvas.drawText(textToDraw, paddingLeft.toFloat(), centreY, textPaint)
     }
 }
