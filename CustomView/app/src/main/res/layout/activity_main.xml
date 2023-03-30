@@ -7,16 +7,8 @@
     tools:context=".MainActivity">
 
 
-    <ru.demchuk.customview.ReactionView
-        android:id="@+id/reactionView"
-        android:background="@drawable/bg_reactiom_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="10dp"
-        app:count="6"
-        app:react="🤡" />
-    <ru.demchuk.customview.HorizontalViewGroup
+    <ru.demchuk.customview.FleBoxLayout
+        android:id="@+id/flex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

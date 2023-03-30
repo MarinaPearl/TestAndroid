@@ -22,7 +22,7 @@ class ReactionView @JvmOverloads constructor(
 
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textSize = 24f.sp(context)
-        color = Color.BLACK
+        color = Color.WHITE
     }
 
     init {

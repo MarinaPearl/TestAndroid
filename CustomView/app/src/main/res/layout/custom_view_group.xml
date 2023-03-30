@@ -10,7 +10,7 @@
         android:id="@+id/text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="hello"
+        android:text="Я люблю тебя, какашка"
         />
 
 </merge>

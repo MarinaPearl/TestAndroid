@@ -10,9 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-         binding.reactionView.setOnClickListener {
-            it.isSelected = !it.isSelected
-         }
+//        binding.reactionView.setOnClickListener {
+//            it.isSelected = !it.isSelected
+//        }
 
     }
 }
