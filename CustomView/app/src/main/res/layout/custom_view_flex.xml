@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <ru.demchuk.customview.ReactionView
         android:id="@+id/reaction1"
-        count="5"
-        react="🥰"
+        app:react="🥰"
+        app:count="5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_reaction_view"
-        android:paddingHorizontal="15dp" />
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
     <ru.demchuk.customview.ReactionView
         android:id="@+id/reaction2"
-        count="5"
-        react="🤣"
+        app:react="🥰"
+        app:count="5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_reaction_view"
-        android:paddingHorizontal="15dp" />
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"/>
 
 
 
