@@ -55,6 +55,7 @@ class HorizontalViewGroup @JvmOverloads constructor(
             offsetX + text.measuredWidth,
             offsetY + text.measuredHeight
         )
+
     }
 
     override fun generateDefaultLayoutParams(): LayoutParams {

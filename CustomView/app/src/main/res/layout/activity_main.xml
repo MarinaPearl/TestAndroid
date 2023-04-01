@@ -7,9 +7,10 @@
     tools:context=".MainActivity">
 
 
-    <ru.demchuk.customview.FleBoxLayout
-        android:id="@+id/flexBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+   <ru.demchuk.customview.MessageCustomViewGroup
+       android:id="@+id/message"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" >
+   </ru.demchuk.customview.MessageCustomViewGroup>
 
 </FrameLayout>

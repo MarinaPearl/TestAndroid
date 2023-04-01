@@ -17,7 +17,24 @@ class ReactionView @JvmOverloads constructor(
     defStyleRes: Int = 0) : View(context, attrs, defStyleAttr, defStyleRes) {
 
 
-    private var textToDraw = ""
+    var reaction : String = ""
+    set(value) {
+        field = value
+        invalidate()
+    }
+
+    var count : Int = 0
+    set(value) {
+        val isNeedRequestLayout = value.toString().length != field.toString().length
+        field = value
+        if (isNeedRequestLayout) {
+            requestLayout()
+        } else {
+            invalidate()
+        }
+    }
+    private val textToDraw
+        get() = "$reaction $count"
     private val textBounds = Rect()
 
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -27,9 +44,8 @@ class ReactionView @JvmOverloads constructor(
 
     init {
         context.withStyledAttributes(attrs, R.styleable.ReactionView) {
-            val reaction = this.getString(R.styleable.ReactionView_react)
-            val count = this.getInt(R.styleable.ReactionView_count, 0)
-            textToDraw = "$reaction $count"
+            reaction = this.getString(R.styleable.ReactionView_react).toString()
+            count = this.getInt(R.styleable.ReactionView_count, 0)
         }
     }
 
