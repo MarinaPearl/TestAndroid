@@ -4,10 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.marginBottom
-import androidx.core.view.marginLeft
-import androidx.core.view.marginRight
-import androidx.core.view.marginTop
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.*
+import kotlin.collections.forEach
 
 class MessageCustomViewGroup @JvmOverloads constructor(
     context: Context,
@@ -16,19 +16,18 @@ class MessageCustomViewGroup @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr, defStyleRes) {
 
-    var avatar: View
-    var name: View
-    var message: View
-    var reactios: View
-    var listView = arrayListOf<View>()
+    var avatar: ImageView
+    var name: TextView
+    var message: TextView
+
+    // var reactios: View
 
     init {
-        inflate(context, R.layout.custom_view_group_reaction, this)
-        avatar = findViewById(R.id.image2)
+        inflate(context, R.layout.custom_view_group, this)
+        avatar = findViewById(R.id.image_avatar)
         name = findViewById(R.id.name)
-        message = findViewById(R.id.text2)
-        reactios = findViewById(R.id.flexBox2)
-        listView.addAll(arrayListOf(name, message, reactios))
+        message = findViewById(R.id.message_)
+        // reactios = findViewById(R.id.flexBox2)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -37,19 +36,21 @@ class MessageCustomViewGroup @JvmOverloads constructor(
             avatar.measuredWidth + avatar.marginRight + avatar.marginLeft
         var heightUsed = 0
         var maxWidth = 0
-        listView.forEach {
-            measureChildWithMargins(
-                it,
-                widthMeasureSpec,
-                widthUsed,
-                heightMeasureSpec,
-                heightUsed
-            )
-            heightUsed += it.measuredHeight + it.marginTop + it.marginBottom
-            maxWidth = maxOf(
-                maxWidth,
-                it.measuredWidth + it.marginLeft + it.marginRight
-            )
+        children.forEach {
+            if (it != children.first()) {
+                measureChildWithMargins(
+                    it,
+                    widthMeasureSpec,
+                    widthUsed,
+                    heightMeasureSpec,
+                    heightUsed
+                )
+                heightUsed += it.measuredHeight + it.marginTop + it.marginBottom
+                maxWidth = maxOf(
+                    maxWidth,
+                    it.measuredWidth + it.marginLeft + it.marginRight
+                )
+            }
         }
         widthUsed += paddingLeft + paddingRight + marginLeft + marginRight
         setMeasuredDimension(maxWidth + widthUsed, heightUsed)
@@ -66,15 +67,17 @@ class MessageCustomViewGroup @JvmOverloads constructor(
         )
         var count = 0
         offsetX += avatar.marginRight + avatar.measuredWidth
-        listView.forEach {
-            it.layout(
-                offsetX + it.marginLeft,
-                offsetY + it.marginTop,
-                offsetX + it.measuredWidth + it.marginLeft,
-                offsetY + it.measuredHeight + it.marginTop
-            )
-            ++count
-            offsetY += it.measuredHeight + it.marginTop + it.marginBottom //+ it.paddingBottom + it.paddingTop
+        children.forEach {
+            if (it != children.first()) {
+                it.layout(
+                    offsetX + it.marginLeft,
+                    offsetY + it.marginTop,
+                    offsetX + it.measuredWidth + it.marginLeft,
+                    offsetY + it.measuredHeight + it.marginTop
+                )
+                ++count
+                offsetY += it.measuredHeight + it.marginTop + it.marginBottom //+ it.paddingBottom + it.paddingTop
+            }
         }
     }
 

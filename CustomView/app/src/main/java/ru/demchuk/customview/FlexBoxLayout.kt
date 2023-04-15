@@ -62,7 +62,6 @@ class FlexBoxLayout @JvmOverloads constructor(
             offsetX += it.measuredWidth + it.marginRight
             maxOffsetY = maxOf(maxOffsetY, it.marginTop + it.marginBottom + it.measuredHeight)
         }
-
     }
 
     override fun generateDefaultLayoutParams(): LayoutParams {

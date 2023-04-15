@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@mipmap/ic_launcher"
-        />
-    <TextView
-        android:id="@+id/name"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Марина Демчук"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:id="@+id/text2"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Если ты случайно читаешь это сообщение, то знай,что у тебя все получится!"
-        />
-    <ru.demchuk.customview.FlexBoxLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:background="?colorOnPrimary">
+
+   <ru.demchuk.customview.MessageCustomViewGroup
+       android:id="@+id/viewGroup"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       tools:ignore="MissingConstraints" />
+   <!-- <ru.demchuk.customview.FlexBoxLayout
         android:id="@+id/flexBox2"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
-</merge>
+        android:layout_width="wrap_content"/>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
